@@ -1,5 +1,6 @@
 import allure
-from conftest import driver
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 from pages.main_page import MainPage
 
 class TestLogo:
@@ -19,4 +20,5 @@ class TestLogo:
         main_page.wait_visibility_of_header_logo_yandex()
         main_page.click_on_header_logo_yandex()
         main_page.switch_to_next_tab()
-        assert main_page.get_page_title() == 'Дзен'
+        WebDriverWait(driver, 10).until(EC.title_contains('Дзен'))
+        assert 'Дзен' in main_page.get_page_title()

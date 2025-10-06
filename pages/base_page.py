@@ -29,12 +29,12 @@ class BasePage:
         return self.driver.find_element(*locator).text
     
     @allure.step('Перейти на другую вкладку')
-    def switch_to_next_tab(self):
-        self.driver.switch_to_window(self.driver.window_handles[1])
+    def switch_to_next_tab(self, timeout=10, index=1):
+        WebDriverWait(self.driver, timeout).until(lambda d: len(d.window_handles) > index)
+        self.driver.switch_to.window(self.driver.window_handles[index])
 
     @allure.step('Получить заголовок страницы')
     def get_page_title(self):
-        WebDriverWait(self.driver, 6).until(EC.presence_of_element_located(MainPageLocators.title_dzen))
         return self.driver.title
     
     @allure.step('Проверить отображение элемента')
