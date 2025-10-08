@@ -1,1 +1,1 @@
-# Sprint_6
+Чтобы посотреть отчеты в Allure, нужно вводить в терминале в VS Code allure serve allure_results
