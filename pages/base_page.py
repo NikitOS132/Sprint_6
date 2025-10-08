@@ -34,7 +34,8 @@ class BasePage:
         self.driver.switch_to.window(self.driver.window_handles[index])
 
     @allure.step('Получить заголовок страницы')
-    def get_page_title(self):
+    def get_page_title(self, timeout=10):
+        WebDriverWait(self.driver, timeout).until(EC.title_contains('Дзен'))
         return self.driver.title
     
     @allure.step('Проверить отображение элемента')
